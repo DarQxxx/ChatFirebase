@@ -1,0 +1,28 @@
+$sentMessagesAreaColor: rgb(95, 95, 95);
+$white: rgb(255, 255, 255);
+$typedMessagesAreaColor: rgb(199, 219, 255);
+
+.back{
+    background-color: $sentMessagesAreaColor;
+    
+    color: $white;
+  }
+  .msg-field{
+      background-color: $typedMessagesAreaColor;
+      padding: 1.05rem 0;
+      justify-content: center;
+  }
+
+  .msg-field--textarea{
+      background-color: red;
+      border-radius: 25px;
+      text-align: left;
+      max-height: 10vh;
+    padding: 0.2rem 1rem;
+      
+      
+  }
+  .msg-field--textarea-clear{
+      border: none;
+      outline: none;
+  }
