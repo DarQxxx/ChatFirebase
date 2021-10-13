@@ -1,6 +1,7 @@
 $sentMessagesAreaColor: rgb(95, 95, 95);
 $white: rgb(255, 255, 255);
 $typedMessagesAreaColor: rgb(199, 219, 255);
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
 .back{
     background-color: $sentMessagesAreaColor;
@@ -12,17 +13,35 @@ $typedMessagesAreaColor: rgb(199, 219, 255);
       padding: 1.05rem 0;
       justify-content: center;
   }
-
   .msg-field--textarea{
-      background-color: red;
-      border-radius: 25px;
+      background-color: $white;
       text-align: left;
-      max-height: 10vh;
     padding: 0.2rem 1rem;
-      
-      
+    background-color: rgb(155, 155, 155);
+    color: $white;
+    font-size: 26px;
+  }
+
+  .bi-shuffle{
+    font-size: 26px;
+    color: white;
+
+  }
+  .msg-field--textarea::placeholder{
+    color: $white;
   }
   .msg-field--textarea-clear{
       border: none;
       outline: none;
+      overflow-y: scroll;
   }
+
+  //login
+  .login{
+    height: 100vh;
+  }
+
+  .login-form{
+    
+  }
+
