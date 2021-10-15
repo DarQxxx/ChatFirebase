@@ -1,7 +1,10 @@
 $sentMessagesAreaColor: rgb(95, 95, 95);
 $white: rgb(255, 255, 255);
 $typedMessagesAreaColor: rgb(199, 219, 255);
+$black: #2D2926FF;
+$cherrytomato: #E94B3CFF;
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800;900&display=swap');
 
 .back{
     background-color: $sentMessagesAreaColor;
@@ -38,10 +41,46 @@ $typedMessagesAreaColor: rgb(199, 219, 255);
 
   //login
   .login{
-    height: 100vh;
+    position: relative;
   }
 
-  .login-form{
-    
+  .login-box{
+    width: 40rem;
+    height: 20rem;
+    border: 1px solid black;
+    background-color: $cherrytomato;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .login-form{
+      position: absolute;
+      width:100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      a{
+        text-decoration: none;
+      }
+      .login-labels{
+        font-size: 24px;
+        color: $black;
+        font-family: 'Heebo', sans-serif;
+      }
+      .login-button{
+        width: 5rem;
+        height: 2rem;
+        background-color: white;
+        color: $black;
+        line-height: 1.9rem;
+        border: 1px solid $black;
+ 
+      }
+    }
   }
 
+input{
+  outline: none;
+
+}
