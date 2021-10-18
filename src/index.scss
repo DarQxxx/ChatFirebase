@@ -3,6 +3,9 @@ $white: rgb(255, 255, 255);
 $typedMessagesAreaColor: rgb(199, 219, 255);
 $black: #2D2926FF;
 $cherrytomato: #E94B3CFF;
+$purple: #8401ff;
+$inputpurple: #683bab;
+$yellow: #ffc82f;
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800;900&display=swap');
 
@@ -45,10 +48,11 @@ $cherrytomato: #E94B3CFF;
   }
 
   .login-box{
-    width: 40rem;
-    height: 20rem;
+    width: 25rem;
+    height: 31rem;
     border: 1px solid black;
-    background-color: $cherrytomato;
+    background: rgb(7,0,50);
+    background: linear-gradient(45deg, rgba(7,0,50,1) 0%, rgba(60,37,119,1) 50%, rgba(12,0,65,1) 100%);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -63,19 +67,47 @@ $cherrytomato: #E94B3CFF;
       a{
         text-decoration: none;
       }
+      .login-inputs{
+        background-color: $inputpurple;
+        border: none;
+        font-size: 24px;
+        color: white;
+        padding: 0 0.5rem;
+      }
       .login-labels{
         font-size: 24px;
-        color: $black;
+        color: $white;
         font-family: 'Heebo', sans-serif;
+        text-align: left;
+
       }
-      .login-button{
-        width: 5rem;
-        height: 2rem;
-        background-color: white;
-        color: $black;
-        line-height: 1.9rem;
-        border: 1px solid $black;
- 
+      a{
+        width: 75%;
+        .login-button{
+          width: 100%;
+          height: 2.5rem;
+          font-size: 24px;
+          background-color: $purple;
+          color: $white;
+          line-height: 1.9rem;
+          border: 1px solid $black;
+          display: inline-flex;
+          align-items: center; 
+          text-align: center;
+          justify-content: center;
+   
+        }
+      }
+      .login-register{
+      color: $white;
+      text-align: right;
+      }
+      .login-register--clickHere{
+        color:$yellow;
+        
+      }
+      .login-register--clickHere:hover{
+        cursor: pointer;
       }
     }
   }

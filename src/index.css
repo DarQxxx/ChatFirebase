@@ -54,10 +54,11 @@
 }
 
 .login-box {
-  width: 40rem;
-  height: 20rem;
+  width: 25rem;
+  height: 31rem;
   border: 1px solid black;
-  background-color: #E94B3CFF;
+  background: #070032;
+  background: linear-gradient(45deg, #070032 0%, #3c2577 50%, #0c0041 100%);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -78,19 +79,56 @@
   text-decoration: none;
 }
 
-.login-box .login-form .login-labels {
+.login-box .login-form .login-inputs {
+  background-color: #683bab;
+  border: none;
   font-size: 24px;
-  color: #2D2926FF;
-  font-family: 'Heebo', sans-serif;
+  color: white;
+  padding: 0 0.5rem;
 }
 
-.login-box .login-form .login-button {
-  width: 5rem;
-  height: 2rem;
-  background-color: white;
-  color: #2D2926FF;
+.login-box .login-form .login-labels {
+  font-size: 24px;
+  color: white;
+  font-family: 'Heebo', sans-serif;
+  text-align: left;
+}
+
+.login-box .login-form a {
+  width: 75%;
+}
+
+.login-box .login-form a .login-button {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 24px;
+  background-color: #8401ff;
+  color: white;
   line-height: 1.9rem;
   border: 1px solid #2D2926FF;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login-box .login-form .login-register {
+  color: white;
+  text-align: right;
+}
+
+.login-box .login-form .login-register--clickHere {
+  color: #ffc82f;
+}
+
+.login-box .login-form .login-register--clickHere:hover {
+  cursor: pointer;
 }
 
 input {
