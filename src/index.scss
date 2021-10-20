@@ -6,6 +6,7 @@ $cherrytomato: #E94B3CFF;
 $purple: #8401ff;
 $inputpurple: #683bab;
 $yellow: #ffc82f;
+$blue: #007497;
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800;900&display=swap');
 
@@ -14,6 +15,25 @@ $yellow: #ffc82f;
     
     color: $white;
   }
+  .messages-every{
+    word-wrap: break-word;
+    padding: 13px 15px 0 0;
+    .message-direct{
+      padding: 10px;
+    display: inline-block;
+      max-width: 40%;
+      border-radius: 25px;
+    }
+
+  }
+  .messages-my{
+    text-align: right;
+    .message-direct-my{
+      background-color: $blue;
+    }
+  }
+
+
   .msg-field{
       background-color: $typedMessagesAreaColor;
       padding: 1.05rem 0;

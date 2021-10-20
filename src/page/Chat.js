@@ -5,6 +5,7 @@ export default function Chat() {
     const [heightOfMessageField, setHeightOfMessageField] = useState("0")
     const messageInput = useRef();
     const [message, setMessage] = useState("");
+    const [chatMessages, setChatMessages] = useState([]);
   useEffect(() => {
     //bierzemy wysokość diva, będącego rodzicem inputa
     let messagesHeight = document.querySelector(".msg-field--textarea").offsetHeight;
@@ -22,8 +23,16 @@ export default function Chat() {
   }, [])
   
   function handleInput(e){
-    console.log(e.target.value);
-  
+    setMessage(messageInput.current.value);
+    console.log(message);     
+  }
+
+  function sendMessage(e){
+    if (e.key === "Enter"){
+      setChatMessages([...chatMessages, message]);
+      setMessage("");
+      messageInput.current.value="";
+    }
   }
   
   function test(){
@@ -34,15 +43,15 @@ export default function Chat() {
       <div>
         <div className="container ">
           <div className="row">
-            <div className=" back text-center col-12 p0">
-              
+            <div className=" back text-center col-12 p-0">
+              {chatMessages.map((message, index)=> (<div class="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))}
             </div>
           </div>
           <div className="row ">
-                <form className="p-0 d-flex ">
-                  <input type="text" className="msg-field--textarea  msg-field--textarea-clear w-100" placeholder="Aa" onChange={handleInput} ref={messageInput} ></input>
+                <div className="p-0 d-flex ">
+                  <input type="text"  className="msg-field--textarea  msg-field--textarea-clear w-100" placeholder="Aa" onChange={handleInput} onKeyDown={sendMessage} ref={messageInput} ></input>
                   <a href="#" className=" border-left bg-info px-3 "><i className="bi bi-shuffle"></i></a>
-                </form>
+                </div>
                 
           </div>
         </div>
