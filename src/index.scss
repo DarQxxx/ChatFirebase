@@ -101,10 +101,9 @@ $blue: #007497;
         text-align: left;
 
       }
-      a{
-        width: 75%;
+     
         .login-button{
-          width: 100%;
+          width: 75%;
           height: 2.5rem;
           font-size: 24px;
           background-color: $purple;
@@ -116,7 +115,6 @@ $blue: #007497;
           text-align: center;
           justify-content: center;
    
-        }
       }
       .login-register{
       color: $white;

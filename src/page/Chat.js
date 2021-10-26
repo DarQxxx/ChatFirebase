@@ -7,20 +7,25 @@ export default function Chat() {
     const [message, setMessage] = useState("");
     const [chatMessages, setChatMessages] = useState([]);
   useEffect(() => {
-    //bierzemy wysokość diva, będącego rodzicem inputa
-    let messagesHeight = document.querySelector(".msg-field--textarea").offsetHeight;
-    //wysokość diva będącego tłem, na którym wyświetlają się wiadomości (wysokość ekranu - wysokość diva z inputem)
-    let messageBoardHeight = window.innerHeight - messagesHeight;
-    //łapiemy za div, który jest tłem wysłanych wcześniej wiadomości
-    let messagedBoard = document.querySelector(".back");
-    //ustawiamy wysokość tła wysłanych wcześniej wiadomości na to co obliczyliśmy
-    messagedBoard.style.height = messageBoardHeight + "px";
-    // zapisujemy wysokość tła wiadomości w state
-    setHeightOfMessagedBoard(messageBoardHeight);
-   // zapisujemy wysokość rodzica inputa w state
-   setHeightOfMessageField(messagesHeight);
+try {resizing()}
+catch {console.log("Niestety coś poszło nie tak")};
   
   }, [])
+
+  function resizing(){
+        //bierzemy wysokość diva, będącego rodzicem inputa
+        let messagesHeight = document.querySelector(".msg-field--textarea").offsetHeight;
+        //wysokość diva będącego tłem, na którym wyświetlają się wiadomości (wysokość ekranu - wysokość diva z inputem)
+        let messageBoardHeight = window.innerHeight - messagesHeight;
+        //łapiemy za div, który jest tłem wysłanych wcześniej wiadomości
+        let messagedBoard = document.querySelector(".back");
+        //ustawiamy wysokość tła wysłanych wcześniej wiadomości na to co obliczyliśmy
+        messagedBoard.style.height = messageBoardHeight + "px";
+        // zapisujemy wysokość tła wiadomości w state
+        setHeightOfMessagedBoard(messageBoardHeight);
+       // zapisujemy wysokość rodzica inputa w state
+       setHeightOfMessageField(messagesHeight);
+  }
   
   function handleInput(e){
     setMessage(messageInput.current.value);
@@ -39,6 +44,8 @@ export default function Chat() {
     console.log("test");
   }
   
+  window.addEventListener('resize', resizing);
+
     return (
       <div>
         <div className="container ">
