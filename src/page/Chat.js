@@ -6,62 +6,62 @@ export default function Chat() {
     const messageInput = useRef();
     const [message, setMessage] = useState("");
     const [chatMessages, setChatMessages] = useState([]);
-  useEffect(() => {
-try {resizing()}
-catch {console.log("Niestety coś poszło nie tak")};
-  
-  }, [])
 
-  function resizing(){
-        //bierzemy wysokość diva, będącego rodzicem inputa
-        let messagesHeight = document.querySelector(".msg-field--textarea").offsetHeight;
-        //wysokość diva będącego tłem, na którym wyświetlają się wiadomości (wysokość ekranu - wysokość diva z inputem)
-        let messageBoardHeight = window.innerHeight - messagesHeight;
-        //łapiemy za div, który jest tłem wysłanych wcześniej wiadomości
-        let messagedBoard = document.querySelector(".back");
-        //ustawiamy wysokość tła wysłanych wcześniej wiadomości na to co obliczyliśmy
-        messagedBoard.style.height = messageBoardHeight + "px";
-        // zapisujemy wysokość tła wiadomości w state
-        setHeightOfMessagedBoard(messageBoardHeight);
-       // zapisujemy wysokość rodzica inputa w state
-       setHeightOfMessageField(messagesHeight);
-  }
+
+
+
+
+
+    
+  
+
+
   
   function handleInput(e){
     setMessage(messageInput.current.value);
     console.log(message);     
   }
 
-  function sendMessage(e){
-    if (e.key === "Enter"){
+  function sendMessageWithEnter(e){
+    if (e.key === "Enter" && (message != "")){
       setChatMessages([...chatMessages, message]);
       setMessage("");
       messageInput.current.value="";
     }
   }
+
+  function sendMessage(e){
+    if(message != ""){
+      setChatMessages([...chatMessages, message]);
+      setMessage("");
+      messageInput.current.value="";
+  }
+}
   
   function test(){
     console.log("test");
   }
   
-  window.addEventListener('resize', resizing);
+ 
 
     return (
-      <div>
-        <div className="container ">
+ <div>
+        <div className="container back">
           <div className="row">
-            <div className=" back text-center col-12 p-0">
+            <div className=" text-center col-12 p-0">
               {chatMessages.map((message, index)=> (<div class="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))}
             </div>
           </div>
-          <div className="row ">
-                <div className="p-0 d-flex ">
-                  <input type="text"  className="msg-field--textarea  msg-field--textarea-clear w-100" placeholder="Aa" onChange={handleInput} onKeyDown={sendMessage} ref={messageInput} ></input>
-                  <a href="#" className=" border-left bg-info px-3 "><i className="bi bi-shuffle"></i></a>
-                </div>
-                
-          </div>
+
         </div>
-      </div>
-)
-}
+
+  <div className="container">
+    <div className="row ">
+      <div className="p-0 d-flex ">
+            <input type="text"  className="msg-field--textarea  msg-field--textarea-clear w-100" placeholder="Aa" onChange={handleInput} onKeyDown={sendMessageWithEnter} ref={messageInput} ></input>
+            <a href="#" className=" border-left bg-info px-3 " onClick={sendMessage}><i className="bi bi-shuffle"></i></a>
+          </div>        
+       </div>
+    </div>
+  </div>
+)}

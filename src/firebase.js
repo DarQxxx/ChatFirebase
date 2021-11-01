@@ -1,6 +1,6 @@
 import {initializeApp} from "firebase/app"
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
-
+import firebase from "firebase/compat";
 
 
 const firebaseConfig = {
@@ -13,12 +13,12 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_FIREBASE_APP_ID
 }
 
-const app = initializeApp(firebaseConfig);
+
+const app = firebase.initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const register = (auth, email, password) => {
-    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+export const register = (email, password) => {
+    firebase.auth().createUserWithEmailAndPassword( email, password).then((userCredential) => {
         const userek = userCredential.user
-        console.log(userek);
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -28,9 +28,11 @@ export const register = (auth, email, password) => {
     })
 }
 
-export const login = (auth, email, password) => {
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+export const login = (email, password) => {
+    firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
         const userek = userCredential.user
+        console.log(userek)
+        
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -39,4 +41,13 @@ export const login = (auth, email, password) => {
         console.log("error message = " + errorMessage);
     })
 }
+
+export const check = firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        console.log(user);
+    }
+    else {
+        console.log("Nie ma usera")
+    }
+});
 

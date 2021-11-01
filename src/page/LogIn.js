@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {auth, login} from "../firebase"
+import {login, check} from "../firebase"
 
 export default function LogIn() {
     const [userData, setUserData] = useState({
@@ -8,13 +8,18 @@ export default function LogIn() {
         passwd: "",
     })
 
+    useEffect(() => {
+        check();
+    }, [])
+
+
     const handleChange = (e) => {
         setUserData({...userData, [e.target.id]: e.target.value})
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        login(auth, userData.email, userData.passwd);
+        login(userData.email, userData.passwd);
         
     }
     return (

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 
-import { auth, register } from '../firebase'
+import { register } from '../firebase'
 
 export default function Register() {
     const [userData, setUserData] = useState({
@@ -15,7 +15,7 @@ export default function Register() {
 
     const handleSubmit =  (e) => {
         e.preventDefault();
-        register(auth, userData.email, userData.passwd);
+        register(userData.email, userData.passwd);
         
     }
 

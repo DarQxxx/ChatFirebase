@@ -3,11 +3,13 @@ import Chat from './page/Chat'
 import LogIn from './page/LogIn'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './page/Register';
+import Header from './page/Header';
 
 
 export default function App() {
   return (
     <Router>
+      <Header/>
       <Switch>
       <Route path="/chat">
         <Chat/>
