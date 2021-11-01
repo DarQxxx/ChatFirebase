@@ -49,7 +49,7 @@ export default function Chat() {
         <div className="container back">
           <div className="row">
             <div className=" text-center col-12 p-0">
-              {chatMessages.map((message, index)=> (<div class="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))}
+              {chatMessages.map((message, index)=> (<div className="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))}
             </div>
           </div>
 

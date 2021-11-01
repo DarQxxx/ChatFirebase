@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
-import { Redirect } from 'react-router'
+import React, { useContext, useState } from 'react'
+import AppContext from '../hooks/AppContext';
+import { logout} from "../firebase"
+import { Link } from 'react-router-dom';
 
 export default function Header() {
-    const [isLogged, setIsLogged] = useState(false)
+    const [isLoggedIn, user] = useContext(AppContext);
 
-    function handleClick(){
-        setIsLogged(!isLogged)
-    }
+    console.log(isLoggedIn);
 
-    if (isLogged===true) return <Redirect to="/chat"></Redirect>
 
     return (
     <div className="w-100 full-width-gradient d-flex align-items-center">
         <div className="container">
             <div className="color-white d-flex justify-content-end font-family-heebo ">
-                {isLogged? <div onClick={handleClick} className="pointer">Wyloguj</div> : <div onClick={handleClick} className="pointer"> Zaloguj</div>}
+            {isLoggedIn? <div onClick={logout} className="pointer">Wyloguj</div> : <Link style={{textDecoration: "none", color: "white"}} to="/login"> Zaloguj</Link>}
+
             </div>
         </div>
     </div>

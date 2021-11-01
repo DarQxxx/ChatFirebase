@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {login, check} from "../firebase"
+import {login} from "../firebase"
 
 export default function LogIn() {
     const [userData, setUserData] = useState({
         email: "",
         passwd: "",
     })
-
-    useEffect(() => {
-        check();
-    }, [])
 
 
     const handleChange = (e) => {
@@ -24,11 +20,11 @@ export default function LogIn() {
     }
     return (
         <div className="container">
-            <div class="login-box">
+            <div className="login-box">
             <form className="login-form d-flex flex-column text-center align-items-center" onSubmit={handleSubmit}>
-                <label for="email" className="login-labels pb-2 w-75">E-mail</label>
+                <label htmlFor="email" className="login-labels pb-2 w-75">E-mail</label>
                 <input type="email" id="email" className="mb-2 w-75 login-inputs" onChange={handleChange}></input>
-                <label for="email" id="passwd" className="login-labels pb-2 w-75">Hasło</label>
+                <label htmlFor="email" id="passwd" className="login-labels pb-2 w-75">Hasło</label>
                 <input type="password" id="passwd" className="mb-4 w-75 login-inputs" onChange={handleChange}></input>
                 <input type="submit" className="login-button"  value="Zaloguj się" ></input>
                <div className="login-register w-75 mt-3">Nie posiadasz konta? <Link to="/signin"><span className="login-register--clickHere">Zarejestruj się</span></Link></div>

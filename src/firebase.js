@@ -31,7 +31,6 @@ export const register = (email, password) => {
 export const login = (email, password) => {
     firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
         const userek = userCredential.user
-        console.log(userek)
         
     })
     .catch((error) => {
@@ -41,13 +40,12 @@ export const login = (email, password) => {
         console.log("error message = " + errorMessage);
     })
 }
+export const logout = () => { firebase.auth().signOut().then(() =>{
+    console.log("Wylogowano poprawnie")
+}).catch((err) =>{
+    console.log(err);
+})
+}
 
-export const check = firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        console.log(user);
-    }
-    else {
-        console.log("Nie ma usera")
-    }
-});
+
 
