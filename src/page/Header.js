@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 export default function Header() {
     const [isLoggedIn, user] = useContext(AppContext);
 
-    console.log(isLoggedIn);
 
 
     return (

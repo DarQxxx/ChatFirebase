@@ -1,6 +1,7 @@
 import {initializeApp} from "firebase/app"
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
 import firebase from "firebase/compat";
+import { Redirect, useHistory } from "react-router";
 
 
 const firebaseConfig = {
@@ -15,6 +16,7 @@ const firebaseConfig = {
 
 
 const app = firebase.initializeApp(firebaseConfig);
+export const db = app.firestore()
 export const auth = getAuth(app);
 export const register = (email, password) => {
     firebase.auth().createUserWithEmailAndPassword( email, password).then((userCredential) => {
@@ -28,9 +30,11 @@ export const register = (email, password) => {
     })
 }
 
-export const login = (email, password) => {
+export const login = (email, password, setErrorStatus) => {
     firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+        
         const userek = userCredential.user
+        setErrorStatus(null)
         
     })
     .catch((error) => {
@@ -38,6 +42,7 @@ export const login = (email, password) => {
         const errorMessage = error.message;
         console.log("error code = " + errorCode);
         console.log("error message = " + errorMessage);
+        setErrorStatus(errorCode);
     })
 }
 export const logout = () => { firebase.auth().signOut().then(() =>{
@@ -47,5 +52,11 @@ export const logout = () => { firebase.auth().signOut().then(() =>{
 })
 }
 
+export const getMessages = () => {
+    return firebase.firestore().collection("messages")
+}
+export const time = () =>{
+    return firebase.firestore.FieldValue.serverTimestamp();
+}
 
 

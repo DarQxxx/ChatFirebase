@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import Chat from './page/Chat'
-import LogIn from './page/LogIn'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Register from './page/Register';
 import Header from './page/Header';
 import AppContext from './hooks/AppContext';
-import { stateChanged } from './firebase';
-import {initializeApp} from "firebase/app"
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
 import firebase from "firebase/compat";
+import paths from './page/paths';
+import AuthRoute from './page/routes/AuthRoute';
 
 
 export default function App() {
   const [isLogged, setIsLogged] = useState(false)
   const [user, setUser] = useState(null)
+  const [uid, setUid] = useState(null)
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
         setIsLogged(true);
         setUser(user);
-        console.log(user);
+        setUid(user.uid)
       }
       else {
         setUser({})
         setIsLogged(false)
-        console.log(user);
+        setUid(null);
       }
     })
   }, [])
@@ -33,19 +30,19 @@ export default function App() {
 
   return (
     <Router>
-      <AppContext.Provider value={[isLogged, user]}>
+      <AppContext.Provider value={[isLogged, user, uid]}>
 
         <Header/>
         <Switch>
-        <Route path="/chat">
-          <Chat/>
-        </Route>
-        <Route path="/login" exact={true}>
-          <LogIn/>
-        </Route>
-        <Route path="/signin" exact={true}>
-          <Register/>
-        </Route>
+          {paths.map((route, index) => {
+            
+            if (route.path === "/chat"){
+              return  (<AuthRoute index = {index} path = {route.path} exact={route.exact}> 
+                {route.component} </AuthRoute>)
+            }
+
+            return (<Route index = {index} path = {route.path} exact={route.exact}> 
+            {route.component} </Route>)})}
         </Switch>
       </AppContext.Provider>
 
