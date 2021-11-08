@@ -28,6 +28,7 @@ export default function Chat() {
     }, [])
 
 
+    console.log(uid);
 
     
   
@@ -76,10 +77,16 @@ export default function Chat() {
             <div className=" text-center col-12 p-0">
            {/*   {chatMessages.map((message, index)=> (<div className="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))} */}
             {fireBaseMessages.map((msg) => (
-              
-                <div className="messages-every messages-my"  key={msg.id}>
+              <div>
+                {msg.uid === uid ? (<div className="messages-every messages-my"  key={msg.id}>
                   <p className="message-direct message-direct-my">{msg.text}</p>
-                <img style={{width: "50px", height: "50px", borderRadius:"50%"}} src = {msg.photoUrl} alt="niemaimg"/>
+                  <img className="message-direct-my-img" src = {msg.photoUrl} alt="niemaimg"/></div>) : 
+                  (<div className="messages-every messages-his"  key={msg.id}>
+                    <img className="message-direct-his-img" src = {msg.photoUrl} alt="niemaimg"/>
+                  <p className="message-direct message-direct-his">{msg.text}</p>
+                  </div>) 
+                  }
+                
 
               </div>
             ))}

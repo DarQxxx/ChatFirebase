@@ -1,5 +1,6 @@
 
 $sentMessagesAreaColor: rgb(95, 95, 95);
+$hisMessages: rgb(185, 185, 185);
 $white: rgb(255, 255, 255);
 $typedMessagesAreaColor: rgb(199, 219, 255);
 $black: #2D2926FF;
@@ -45,19 +46,43 @@ user-select: none; /* Standard */
   }
   .messages-every{
     word-wrap: break-word;
-    padding: 7px 15px 7px 0;
+    padding: 7px 15px 7px 15px;
     .message-direct{
       padding: 10px;
-    display: inline-block;
+      display: inline-block;
       max-width: 40%;
       border-radius: 25px;
+      margin: 0;
     }
 
   }
   .messages-my{
     text-align: right;
+
+    .message-direct-my-img{
+      width: 50px;
+      height: 50px;
+      border-radius:50%;
+      margin-left: 14px;
+      }
     .message-direct-my{
       background-color: $blue;
+
+    }
+  }
+
+  .messages-his{
+    text-align: left;
+
+    .message-direct-his-img{
+      width: 50px;
+      height: 50px;
+      border-radius:50%;
+      margin-right: 14px;
+      }
+    .message-direct-his{
+      background-color: $hisMessages;
+
     }
   }
 
