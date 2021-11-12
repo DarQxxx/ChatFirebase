@@ -72,15 +72,20 @@ export default function Chat() {
 
     return (
  <div>
-        <div className="container back">
-          <div className="row">
-            <div className=" text-center col-12 p-0">
+    
+    <div className="container">
+ 
+          <div className="row ">
+          <div className="col-1 p-0">
+      elo
+      </div>
+            <div className=" text-center col-11 p-0 back">
            {/*   {chatMessages.map((message, index)=> (<div className="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))} */}
             {fireBaseMessages.map((msg) => (
               <div>
                 {msg.uid === uid ? (<div className="messages-every messages-my"  key={msg.id}>
                   <p className="message-direct message-direct-my">{msg.text}</p>
-                  <img className="message-direct-my-img" src = {msg.photoUrl} alt="niemaimg"/></div>) : 
+                  </div>) : 
                   (<div className="messages-every messages-his"  key={msg.id}>
                     <img className="message-direct-his-img" src = {msg.photoUrl} alt="niemaimg"/>
                   <p className="message-direct message-direct-his">{msg.text}</p>
@@ -92,16 +97,14 @@ export default function Chat() {
             ))}
             </div>
           </div>
-
-        </div>
-
-  <div className="container">
-    <div className="row ">
-      <div className="p-0 d-flex ">
+          <div className="row ">
+            <div className="col-1"></div>
+      <div className="p-0 d-flex col-11 ">
             <input type="text"  className="msg-field--textarea  msg-field--textarea-clear w-100" placeholder="Aa" onChange={handleInput} onKeyDown={sendMessageWithEnter} ref={messageInput} ></input>
             <a href="#" className=" border-left bg-info px-3 " onClick={sendMessage}><i className="bi bi-shuffle"></i></a>
           </div>        
        </div>
+
     </div>
   </div>
 )}

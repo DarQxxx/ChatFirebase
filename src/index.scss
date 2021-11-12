@@ -64,6 +64,7 @@ user-select: none; /* Standard */
       height: 50px;
       border-radius:50%;
       margin-left: 14px;
+      user-select: none;
       }
     .message-direct-my{
       background-color: $blue;
@@ -79,6 +80,7 @@ user-select: none; /* Standard */
       height: 50px;
       border-radius:50%;
       margin-right: 14px;
+      user-select: none;
       }
     .message-direct-his{
       background-color: $hisMessages;

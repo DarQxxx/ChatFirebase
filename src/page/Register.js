@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
 
-import { register } from '../firebase'
+import { getUsers, register } from '../firebase'
+import AppContext from '../hooks/AppContext'
 
 export default function Register() {
     const [userData, setUserData] = useState({
@@ -16,8 +17,12 @@ export default function Register() {
     const handleSubmit =  (e) => {
         e.preventDefault();
         register(userData.email, userData.passwd);
+
         
     }
+
+
+ 
 
 
     return (
