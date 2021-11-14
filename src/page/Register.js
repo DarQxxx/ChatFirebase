@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
 
-import { getUsers, register } from '../firebase'
+import {register} from '../firebase'
 import AppContext from '../hooks/AppContext'
 
 export default function Register() {
@@ -10,19 +10,26 @@ export default function Register() {
         passwd: "",
     })
 
+    const [image, setImage] = useState(null)
+
     const handleChange = (e) => {
         setUserData({...userData, [e.target.id]: e.target.value})
     }
 
     const handleSubmit =  (e) => {
         e.preventDefault();
-        register(userData.email, userData.passwd);
+        register(userData.email, userData.passwd, image);
 
         
     }
+    const handleFileChange = (e) => {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0]);
+        }
+    }
 
 
- 
+
 
 
     return (
@@ -33,6 +40,7 @@ export default function Register() {
                 <input type="email" id="email" className="mb-2 w-75 login-inputs" onChange={handleChange}></input>
                 <label htmlFor="email" id="passwd" className="login-labels pb-2 w-75">Hasło</label>
                 <input type="password" id="passwd" className="mb-4 w-75 login-inputs" onChange={handleChange}></input>
+                <input type="file" onChange={handleFileChange} />
                 <input type="submit" className="login-button"  value="Zarejestruj się" ></input>
                <div className="login-register w-75 mt-3">Posiadasz konto? <Link to="/login"><span className="login-register--clickHere">Zaloguj się</span></Link></div>
             </form>

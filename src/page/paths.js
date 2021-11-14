@@ -1,4 +1,5 @@
 import Chat from "./Chat";
+import Chatwithfriends from "./Chatwithfriends";
 import LogIn from "./LogIn";
 import Register from "./Register";
 
@@ -6,7 +7,7 @@ import Register from "./Register";
 export default [
 {
     "path" : "/chat",
-    "exact" : false,
+    "exact" : true,
     "component" : <Chat/>,
 } ,
 {
@@ -18,5 +19,10 @@ export default [
     "path" : "/register",
     "exact" : true,
     "component" : <Register/>,
+},
+{
+    "path" : "/chat/:myuid/:hisuid",
+    "exact" : true,
+    "component" : <Chatwithfriends/>,
 }
 ]

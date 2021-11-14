@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { db, getMessages, time } from '../firebase';
+import { Link } from 'react-router-dom';
+import { db, getAnything, getMessages, time } from '../firebase';
 import AppContext from '../hooks/AppContext';
+import Chatwithfriends from './Chatwithfriends';
 
 export default function Chat() {
-    const [heightOfMessagedBoard, setHeightOfMessagedBoard] = useState("0");
-    const [heightOfMessageField, setHeightOfMessageField] = useState("0")
     const messageInput = useRef();
     const [message, setMessage] = useState("");
     const [chatMessages, setChatMessages] = useState([]);
     const [fireBaseMessages, setFireBaseMessages] = useState([])
     const [uid, setUid] = useState(useContext(AppContext)[2])
+    const [firebaseFriendList, setFirebaseFriendList] = useState([]);
 
     const msg = getMessages();
 
@@ -23,12 +24,23 @@ export default function Chat() {
       })
     }
 
+    function updateFriends(){
+      getAnything("users").onSnapshot((querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        setFirebaseFriendList(items);
+      })
+    }
+
+
     useEffect(() => {
-      updateMessages()
+      updateMessages();
+      updateFriends();
     }, [])
 
 
-    console.log(uid);
 
     
   
@@ -77,7 +89,11 @@ export default function Chat() {
  
           <div className="row ">
           <div className="col-1 p-0">
-      elo
+          {firebaseFriendList.map((friends) =>(
+            <div>
+              {friends.uid != uid && <Link to={`chat/${uid}/${friends.uid}`}><div className="text-center pt-3"><img className="friends-img" src={friends.url} alt=""/></div></Link>}
+            </div>
+          ))}
       </div>
             <div className=" text-center col-11 p-0 back">
            {/*   {chatMessages.map((message, index)=> (<div className="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))} */}

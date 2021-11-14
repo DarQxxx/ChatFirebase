@@ -17,17 +17,46 @@ const firebaseConfig = {
 
 
 const app = firebase.initializeApp(firebaseConfig);
-export const storage = getStorage(app);
+export const storage = firebase.storage();
 export const db = app.firestore()
 export const auth = getAuth(app);
-export const register = (email, password) => {
+export const register = (email, password, img) => {
     firebase.auth().createUserWithEmailAndPassword( email, password).then((userCredential) => {
         const userek = userCredential.user
+        
+        if (img != null){
+        storage.ref(`images/${userek.uid}/${img.name}`).put(img).on('state_changed', 
+        (snapshot) => {
+
+        },
+        (error) => {console.log(error);
+        },
+        () => {
+            storage.ref(`images/${userek.uid}`).child(img.name).getDownloadURL().then(url =>{
+                firebase.firestore().collection(userek.uid).add({
+                    email: userek.email,
+                    uid: userek.uid,
+                    url: url
+                })
+                firebase.firestore().collection("users").add({
+                    email: userek.email,
+                    uid: userek.uid,
+                    url: url
+                })
+
+            })
+        });
+        }
+        else{
+        firebase.firestore().collection(userek.uid).add({
+            email: userek.email,
+            uid: userek.uid
+        })
         firebase.firestore().collection("users").add({
             email: userek.email,
             uid: userek.uid
         })
-
+    }
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -62,8 +91,14 @@ export const logout = () => { firebase.auth().signOut().then(() =>{
 export const getMessages = () => {
     return firebase.firestore().collection("messages")
 }
+export const getMessagesWithFriend = (myUid, friendUid) => {
+    return firebase.firestore().collection(`${myUid}${friendUid}_messages`)
+}
 export const getUsers = () => {
     return firebase.firestore().collection("users")
+}
+export const getAnything = (anything) => {
+    return firebase.firestore().collection(anything)
 }
 export const time = () =>{
     return firebase.firestore.FieldValue.serverTimestamp();

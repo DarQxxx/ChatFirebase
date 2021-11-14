@@ -83,6 +83,16 @@
   background-color: #b9b9b9;
 }
 
+.friends-img {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 .msg-field {
   background-color: #c7dbff;
   padding: 1.05rem 0;
