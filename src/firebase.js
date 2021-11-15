@@ -33,12 +33,7 @@ export const register = (email, password, img) => {
         },
         () => {
             storage.ref(`images/${userek.uid}`).child(img.name).getDownloadURL().then(url =>{
-                firebase.firestore().collection(userek.uid).add({
-                    email: userek.email,
-                    uid: userek.uid,
-                    url: url
-                })
-                firebase.firestore().collection("users").add({
+                firebase.firestore().collection("users").doc(userek.uid).set({
                     email: userek.email,
                     uid: userek.uid,
                     url: url
@@ -48,14 +43,11 @@ export const register = (email, password, img) => {
         });
         }
         else{
-        firebase.firestore().collection(userek.uid).add({
+        firebase.firestore().collection("users").doc(userek.uid).set({
             email: userek.email,
             uid: userek.uid
         })
-        firebase.firestore().collection("users").add({
-            email: userek.email,
-            uid: userek.uid
-        })
+
     }
     })
     .catch((error) => {
@@ -97,8 +89,8 @@ export const getMessagesWithFriend = (myUid, friendUid) => {
 export const getUsers = () => {
     return firebase.firestore().collection("users")
 }
-export const getAnything = (anything) => {
-    return firebase.firestore().collection(anything)
+export const getAnything = (col) => {
+    return firebase.firestore().collection(col);
 }
 export const time = () =>{
     return firebase.firestore.FieldValue.serverTimestamp();
