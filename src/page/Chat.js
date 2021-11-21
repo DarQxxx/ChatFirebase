@@ -43,7 +43,6 @@ export default function Chat() {
 
 
     
-  
 
 
   
@@ -52,7 +51,7 @@ export default function Chat() {
   }
 
   function sendMessageWithEnter(e){
-    if (e.key === "Enter" && (message != "")){
+    if (e.key === "Enter" && (message !== "")){
 
       getMessages().add({
         text: message,
@@ -69,7 +68,7 @@ export default function Chat() {
   }
 
   function sendMessage(e){
-    if(message != ""){
+    if(message !== ""){
       setChatMessages([...chatMessages, message]);
       setMessage("");
       messageInput.current.value="";
@@ -91,7 +90,7 @@ export default function Chat() {
           <div className="col-1 p-0">
           {firebaseFriendList.map((friends) =>(
             <div>
-              {friends.uid != uid && <Link to={`chat/${uid}/${friends.uid}`}><div className="text-center pt-3"><img className="friends-img" src={friends.url} alt=""/></div></Link>}
+              {friends.uid !== uid && <Link to={`chat/${friends.uid}`}><div className="text-center pt-3"><img className="friends-img" src={friends.url} alt=""/></div></Link>}
             </div>
           ))}
       </div>

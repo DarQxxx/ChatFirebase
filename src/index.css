@@ -20,9 +20,52 @@
   /* Standard */
 }
 
+.wavy-bg {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  background-image: url(/src/bgs/wave.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  z-index: -100;
+  left: 0;
+  top: 0;
+}
+
 .full-width-gradient {
   background: linear-gradient(45deg, #070032 0%, #3c2577 50%, #0c0041 100%);
   height: 3rem;
+}
+
+.full-width-gradient a {
+  text-decoration: none;
+  color: white;
+}
+
+.full-width-gradient a:hover {
+  color: white;
+}
+
+.transparent-bg {
+  height: 3rem;
+}
+
+.transparent-bg a {
+  text-decoration: none;
+  color: white;
+}
+
+.transparent-bg a:hover {
+  color: white;
+}
+
+.profileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  margin-right: 10px;
 }
 
 .back {
@@ -135,6 +178,80 @@
   border: none;
   outline: none;
   overflow-y: scroll;
+}
+
+.register-box {
+  width: 35rem;
+  height: 31rem;
+  border: 1px solid black;
+  background: #070032;
+  background: linear-gradient(45deg, #070032 0%, #3c2577 50%, #0c0041 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.register-box .login-form {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.register-box .login-form a {
+  text-decoration: none;
+}
+
+.register-box .login-form .login-inputs {
+  background-color: #683bab;
+  border: none;
+  font-size: 24px;
+  color: white;
+  padding: 0 0.5rem;
+}
+
+.register-box .login-form .login-labels {
+  font-size: 24px;
+  color: white;
+  font-family: 'Heebo', sans-serif;
+  text-align: left;
+}
+
+.register-box .login-form .login-button {
+  width: 75%;
+  height: 2.5rem;
+  font-size: 24px;
+  background-color: #8401ff;
+  color: white;
+  line-height: 1.9rem;
+  border: 1px solid #2D2926FF;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.register-box .login-form .login-register {
+  color: white;
+  text-align: right;
+}
+
+.register-box .login-form .login-register--clickHere {
+  color: #ffc82f;
+}
+
+.register-box .login-form .login-register--clickHere:hover {
+  cursor: pointer;
 }
 
 .login {

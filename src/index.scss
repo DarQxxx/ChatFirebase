@@ -27,6 +27,22 @@ $blue: #007497;
 -ms-user-select: none; /* IE10+/Edge */
 user-select: none; /* Standard */
 }
+//home
+
+.wavy-bg{
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  background-image: url(/src/bgs/wave.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: rotate(180deg);
+  z-index: -100;
+  left: 0;
+  top: 0;
+
+
+}
 
 //header
 
@@ -34,6 +50,33 @@ user-select: none; /* Standard */
 .full-width-gradient{
   background: linear-gradient(45deg, rgba(7,0,50,1) 0%, rgba(60,37,119,1) 50%, rgba(12,0,65,1) 100%);
   height: 3rem;
+
+
+  a{
+    text-decoration: none;
+     color: white;
+  }
+  a:hover{
+    color:white;
+  }
+}
+
+.transparent-bg{
+  height: 3rem;
+  a{
+    text-decoration: none;
+     color: white;
+  }
+  a:hover{
+    color:white;
+  }
+}
+
+.profileImage{
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  margin-right: 10px;
 }
 
 //chat
@@ -125,10 +168,79 @@ user-select: none; /* Standard */
       overflow-y: scroll;
   }
 
+  //register
+
+  .register-box{
+    width: 35rem;
+    height: 31rem;
+    border: 1px solid black;
+    background: rgb(7,0,50);
+    background: linear-gradient(45deg, rgba(7,0,50,1) 0%, rgba(60,37,119,1) 50%, rgba(12,0,65,1) 100%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .login-form{
+      position: absolute;
+      width:100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      a{
+        text-decoration: none;
+      }
+      .login-inputs{
+        background-color: $inputpurple;
+        border: none;
+        font-size: 24px;
+        color: white;
+        padding: 0 0.5rem;
+      }
+      .login-labels{
+        font-size: 24px;
+        color: $white;
+        font-family: 'Heebo', sans-serif;
+        text-align: left;
+
+      }
+     
+        .login-button{
+          width: 75%;
+          height: 2.5rem;
+          font-size: 24px;
+          background-color: $purple;
+          color: $white;
+          line-height: 1.9rem;
+          border: 1px solid $black;
+          display: inline-flex;
+          align-items: center; 
+          text-align: center;
+          justify-content: center;
+   
+      }
+      .login-register{
+      color: $white;
+      text-align: right;
+      }
+      .login-register--clickHere{
+        color:$yellow;
+        
+      }
+      .login-register--clickHere:hover{
+        cursor: pointer;
+      }
+    }
+
+  }
+
   //login
   .login{
     position: relative;
   }
+
+
+
 
   .login-box{
     width: 25rem;

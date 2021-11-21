@@ -17,11 +17,13 @@ export default function App() {
         setIsLogged(true);
         setUser(user);
         setUid(user.uid)
+        localStorage.setItem('authUser', JSON.stringify(user))
       }
       else {
         setUser({})
         setIsLogged(false)
         setUid(null);
+        localStorage.removeItem('authUser')
       }
     })
   }, [])
@@ -32,17 +34,22 @@ export default function App() {
     <Router>
       <AppContext.Provider value={[isLogged, user, uid]}>
 
-        <Header/>
+        
         <Switch>
           {paths.map((route, index) => {
             
             if (route.path === "/chat"){
               return  (<AuthRoute index = {index} path = {route.path} exact={route.exact}> 
-                {route.component} </AuthRoute>)
+                <Header bg={1}/> {route.component} </AuthRoute>)
+            }
+
+            if (route.path === "/"){
+              return  (<Route index = {index} path = {route.path} exact={route.exact}> 
+                <Header bg={0}/> {route.component}  </Route>)
             }
 
             return (<Route index = {index} path = {route.path} exact={route.exact}> 
-            {route.component} </Route>)})}
+            <Header bg={1}/> {route.component} </Route>)})}
         </Switch>
       </AppContext.Provider>
 

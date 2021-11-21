@@ -24,7 +24,7 @@ export const register = (email, password, img) => {
     firebase.auth().createUserWithEmailAndPassword( email, password).then((userCredential) => {
         const userek = userCredential.user
         
-        if (img != null){
+        if (img !== null){
         storage.ref(`images/${userek.uid}/${img.name}`).put(img).on('state_changed', 
         (snapshot) => {
 

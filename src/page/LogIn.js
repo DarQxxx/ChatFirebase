@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Link, Redirect, useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import {login} from "../firebase"
 import AppContext from '../hooks/AppContext'
 
@@ -24,10 +24,9 @@ export default function LogIn() {
             
         
     }
-
     useEffect(() => {
         if (effectExe === true){
-            if (errorStatus != null) console.log("jest błąd xd");
+            if (errorStatus !== null) console.log("jest błąd xd");
             else history.push("/chat");
             
     }
@@ -39,7 +38,7 @@ export default function LogIn() {
         <div className="container">
             <div className="login-box">
             <form className="login-form d-flex flex-column text-center align-items-center" onSubmit={handleSubmit}>
-                {errorStatus != null && <div style={{color:"white"}}>{errorStatus}</div>  }
+                {errorStatus !== null && <div style={{color:"white"}}>{errorStatus}</div>  }
                 <label htmlFor="email" className="login-labels pb-2 w-75">E-mail</label>
                 <input type="email" id="email" className="mb-2 w-75 login-inputs" onChange={handleChange}></input>
                 <label htmlFor="email" id="passwd" className="login-labels pb-2 w-75">Hasło</label>
