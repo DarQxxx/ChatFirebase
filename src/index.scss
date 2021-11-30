@@ -1,6 +1,7 @@
 
 $sentMessagesAreaColor: rgb(95, 95, 95);
 $hisMessages: rgb(185, 185, 185);
+$menu: #3e393f;
 $white: rgb(255, 255, 255);
 $typedMessagesAreaColor: rgb(199, 219, 255);
 $black: #2D2926FF;
@@ -71,13 +72,74 @@ user-select: none; /* Standard */
     color:white;
   }
 }
-
 .profileImage{
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
+  user-select: none;
+  align-items: center;
+  padding: 0.1rem 0.5rem 0.1rem 0.2rem;
+  border-radius: 25px;
   margin-right: 10px;
+
+  .profileImage__element{
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    margin-right: 10px;
+
+  }
+
+
+
+
+  &:hover{
+    background-color: rgba(255, 255,255, 0.3);
+    cursor: pointer;
+  
+  }
+
+
 }
+
+.menu{
+  width: 15rem;
+  background-color: $menu ;
+  margin-left: 0.8rem;
+  margin-top: 0.25rem;
+  text-align: center;
+  border-radius: 15px;
+  user-select: none;
+
+  .menu__element{
+    padding: 0.45rem 0 0.45rem 0;
+    
+
+    &:first-child{
+      padding-top: 1.1rem;
+    }
+    &:last-child{
+      padding-bottom: 1.1rem;
+    }
+
+    .menu__element--image{
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+}
+
+.options{
+  width: 35px;
+  height: 35px;
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  &:hover{
+    background-color: rgba(255, 255,255, 0.3);
+    cursor: pointer;
+  }
+
+}
+
 
 //chat
 
@@ -170,18 +232,19 @@ user-select: none; /* Standard */
 
   //register
 
-  .register-box{
+  .register{
     width: 35rem;
-    height: 31rem;
+    height: 41rem;
     border: 1px solid black;
     background: rgb(7,0,50);
     background: linear-gradient(45deg, rgba(7,0,50,1) 0%, rgba(60,37,119,1) 50%, rgba(12,0,65,1) 100%);
     position: absolute;
     top: 50%;
     left: 50%;
+
     transform: translate(-50%, -50%);
 
-    .login-form{
+    .register__form{
       position: absolute;
       width:100%;
       top: 50%;
@@ -190,22 +253,31 @@ user-select: none; /* Standard */
       a{
         text-decoration: none;
       }
-      .login-inputs{
+      .register__form--input{
         background-color: $inputpurple;
         border: none;
         font-size: 24px;
         color: white;
         padding: 0 0.5rem;
       }
-      .login-labels{
+      .register__form--label{
         font-size: 24px;
         color: $white;
         font-family: 'Heebo', sans-serif;
         text-align: left;
 
       }
+
+      
+      input[type=file]::file-selector-button {
+        border: 1px solid $inputpurple;
+        color: white;
+        background-color: $purple;
+      }
+      
+
      
-        .login-button{
+        .register__form--btn{
           width: 75%;
           height: 2.5rem;
           font-size: 24px;
@@ -213,12 +285,13 @@ user-select: none; /* Standard */
           color: $white;
           line-height: 1.9rem;
           border: 1px solid $black;
-          display: inline-flex;
-          align-items: center; 
-          text-align: center;
           justify-content: center;
+          margin-top: 10px;
    
       }
+
+      
+
       .login-register{
       color: $white;
       text-align: right;

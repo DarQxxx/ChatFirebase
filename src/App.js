@@ -5,6 +5,8 @@ import AppContext from './hooks/AppContext';
 import firebase from "firebase/compat";
 import paths from './page/paths';
 import AuthRoute from './page/routes/AuthRoute';
+import { useSelector } from 'react-redux';
+
 
 
 export default function App() {
@@ -27,6 +29,9 @@ export default function App() {
       }
     })
   }, [])
+  const userData = useSelector(state => state.userData)
+
+  console.log(userData);
 
   
 
