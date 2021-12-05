@@ -1,19 +1,21 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { getAnything, getMessagesWithFriend, time } from '../firebase'
-import AppContext from '../hooks/AppContext'
+
 export default function Chatwithfriends () {
   const params = useParams()
+  const userProps = useSelector(state => state.userData)
+  const isLogged = useSelector(state => state.isLogged)
   const messageInput = useRef()
   const [message, setMessage] = useState('')
   const [chatMessages, setChatMessages] = useState([])
   const [fireBaseMessages, setFireBaseMessages] = useState([])
   const [firebaseFriendList, setFirebaseFriendList] = useState([])
   const [profileImage, setProfileImage] = useState(null)
-  const [myuid, setMyuid] = useState(null)
-  const msg1 = getMessagesWithFriend(myuid, params.hisuid)
-  const msg2 = getMessagesWithFriend(params.hisuid, myuid)
+  const msg1 = getMessagesWithFriend(userProps.uid, params.hisuid)
+  const msg2 = getMessagesWithFriend(params.hisuid, userProps.uid)
   const [isLoading, setIsLoading] = useState(true)
   function updateMessages () {
     msg1.orderBy('createdAt').onSnapshot(querySnapshot => {
@@ -25,12 +27,7 @@ export default function Chatwithfriends () {
     })
   }
 
-  console.log(params)
 
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem('authUser')) !== null)
-      setMyuid(JSON.parse(localStorage.getItem('authUser')).uid)
-  }, [JSON.parse(localStorage.getItem('authUser'))])
 
   function updateFriends () {
     getAnything('users').onSnapshot(querySnapshot => {
@@ -51,7 +48,7 @@ export default function Chatwithfriends () {
       })
     updateMessages()
     updateFriends()
-  }, [params.hisuid, myuid])
+  }, [params.hisuid, userProps.uid])
 
   function handleInput (e) {
     setMessage(messageInput.current.value)
@@ -62,14 +59,14 @@ export default function Chatwithfriends () {
       msg1.add({
         text: message,
         createdAt: time(),
-        uid: myuid
+        uid: userProps.uid
       })
 
-      if (myuid !== params.hisuid) {
+      if (userProps.uid !== params.hisuid) {
         msg2.add({
           text: message,
           createdAt: time(),
-          uid: myuid
+          uid: userProps.uid
         })
       }
 
@@ -84,7 +81,7 @@ export default function Chatwithfriends () {
       msg1.add({
         text: message,
         createdAt: time(),
-        uid: myuid
+        uid: userProps.uid
       })
       setChatMessages([...chatMessages, message])
       setMessage('')
@@ -95,17 +92,17 @@ export default function Chatwithfriends () {
   if (isLoading === true) {
     return <div>Ładowanie</div>
   } else {
-    if (myuid === null) {
+    if (userProps.uid === null) {
       return <div>Jesteś zalogowany?</div>
     } else {
       return (
         <div>
           <div className='container'>
             <div className='row '>
-              <div className='col-1 p-0'>
+              <div className='col-1 p-0 friendsList'>
                 {firebaseFriendList.map((friends, index) => (
                   <div>
-                    {friends.uid !== myuid && (
+                    {friends.uid !== userProps.uid && (
                       <div>
                         {friends.uid === params.hisuid ? (
                           <div key={index}>                            <div className='text-center pt-3' style={{cursor: "pointer"}}>
@@ -141,7 +138,7 @@ export default function Chatwithfriends () {
                 {/*   {chatMessages.map((message, index)=> (<div className="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))} */}
                 {fireBaseMessages.map((msg, index) => (
                   <div key={index}>
-                    {msg.uid === myuid ? (
+                    {msg.uid === userProps.uid ? (
                       <div className='messages-every messages-my' key={msg.id}>
                         <p className='message-direct message-direct-my'>
                           {msg.text}

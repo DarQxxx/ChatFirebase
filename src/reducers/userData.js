@@ -1,4 +1,4 @@
-const userDataReducer = (state = {name : null, surname : null, url : null }, action) => {
+const userDataReducer = (state = {name : null, surname : null, uid: null,  profilePic : null }, action) => {
     switch(action.type){
         case 'dataGather' :
             return state = action.payload

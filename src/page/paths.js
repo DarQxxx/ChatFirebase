@@ -1,4 +1,3 @@
-import Chat from "./Chat";
 import Chatwithfriends from "./Chatwithfriends";
 import Homepage from "./Homepage";
 import LogIn from "./LogIn";
@@ -11,11 +10,7 @@ export default [
         "exact" : true,
         "component" : <Homepage/>,
     },
-{
-    "path" : "/chat",
-    "exact" : true,
-    "component" : <Chat/>,
-} ,
+
 {
     "path" : "/login",
     "exact" : true,

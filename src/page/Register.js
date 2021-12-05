@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react'
+import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 
 import {register} from '../firebase'
-import AppContext from '../hooks/AppContext'
+
 
 export default function Register() {
     const [isMatching, setIsMatching] = useState(null)
@@ -40,6 +41,7 @@ export default function Register() {
             setIsMatching(false)
         }
         else
+        
         register(userData.email, userData.passwd, image, userData.name, userData.surname, setErrorStatus);
 
         

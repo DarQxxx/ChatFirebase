@@ -6,6 +6,8 @@ import {
 } from 'firebase/auth'
 import firebase from 'firebase/compat'
 import { getStorage } from 'firebase/storage'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router'
 
 const firebaseConfig = {
@@ -17,6 +19,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 }
+
 
 const app = firebase.initializeApp(firebaseConfig)
 export const storage = firebase.storage()
@@ -133,3 +136,4 @@ export const getAnything = col => {
 export const time = () => {
   return firebase.firestore.FieldValue.serverTimestamp()
 }
+

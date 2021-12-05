@@ -1,26 +1,21 @@
-import React, { useContext } from 'react'
-import AppContext from '../hooks/AppContext'
+import React, { useContext, useRef } from 'react'
 import { getAnything, logout } from '../firebase'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+import Navbar from '../components/Navbar'
 
 export default function Header (props) {
     const [name, setName] = useState(null)
-  const [isLoggedIn] = useContext(AppContext)
-  const [profileImage, setProfileImage] = useState(null)
+
+  const isLogged = useSelector(state => state.isLogged)
+
   const [isMenu, setIsMenu] = useState(false)
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem('authUser')) !== null){
-      getAnything('users')
-        .doc(JSON.parse(localStorage.getItem('authUser')).uid)
-        .onSnapshot(doc => {
-          setProfileImage(doc.data().url)
-        })
-        setName(JSON.parse(localStorage.getItem('authUser')).email)
-    }
-  }, [])
+  const userProps = useSelector(state => state.userData)
+  const clickMenu = useRef()
+
 
   function handleMenuClick () {
     setIsMenu(!isMenu);
@@ -32,9 +27,9 @@ export default function Header (props) {
         <div className='w-100 transparent-bg d-flex align-items-center'>
           <div className='container'>
             <div className='color-white d-flex justify-content-end font-family-heebo '>
-              {isLoggedIn ? (
+              {isLogged ? (
                 <div>
-                  <Link onClick={logout} to='/login'>
+                  <Link onClick={logout} to='/'>
                     Wyloguj
                   </Link>
                 </div>
@@ -48,31 +43,23 @@ export default function Header (props) {
         <div className='w-100 full-width-gradient d-flex align-items-center'>
           <div className='container'>
             <div className='color-white d-flex justify-content-end font-family-heebo '>
-              {isLoggedIn ? (
+              {isLogged ? (
                 <div>
                   <div className='d-flex align-items-center'>
                     <div className='profileImage d-flex'>
                       <img
                         className='profileImage__element'
-                        src={profileImage}
+                        src={userProps.profilePic}
                       />
                       <div className='profileImage__name align-middle'>
-                        {name}
+                        {`${userProps.name} ${userProps.surname}`}
                       </div>
                     </div>
-                    <div className='options d-flex' onClick={handleMenuClick}>
-                      <FaChevronDown />
+                    <div className='options d-flex' onClick={handleMenuClick} ref={clickMenu}>
+                      <FaChevronDown  />
                     </div>
                   </div>
-                  {isMenu&& (                  <div className='menu position-absolute d-flex flex-column'>
-                    <div className='menu__element'>Profile</div>
-                    <div className='menu__element'>Settings</div>
-                    <div className='menu__element'>
-                      <Link onClick={logout} to='/login'>
-                        Wyloguj
-                      </Link>
-                    </div>
-                  </div>) }
+                  {isMenu&& (<Navbar setIsMenu={setIsMenu} clickMenu={clickMenu}></Navbar>) }
 
                 </div>
               ) : (

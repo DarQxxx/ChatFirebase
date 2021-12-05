@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import {login} from "../firebase"
-import AppContext from '../hooks/AppContext'
 import { useSelector, useDispatch } from 'react-redux'
 import {dataAction} from '../actions'
 
@@ -11,6 +10,8 @@ export default function LogIn() {
         email: "",
         passwd: "",
     })
+    const isLogged = useSelector(state => state.isLogged)
+    const userProps = useSelector(state => state.userData)
     const history = useHistory();
 
 
@@ -26,12 +27,10 @@ export default function LogIn() {
         
     }
     useEffect(() => {
-            if (errorStatus === null) history.push(`/chat/${JSON.parse(localStorage.getItem('authUser')).uid}`);
-            
+            if (userProps.uid !== null) history.push(`/chat/${userProps.uid}`);
+    }, [userProps])
 
-    }, [errorStatus])
-
-    const dispatch = useDispatch();
+    
 
     return (
         <div className="container">
@@ -46,7 +45,6 @@ export default function LogIn() {
                <div className="login-register w-75 mt-3">Nie posiadasz konta? <Link to="/register"><span className="login-register--clickHere">Zarejestruj się</span></Link></div>
             </form>
             </div>
-            <button onClick={() => dispatch(dataAction({name: "imie", surname: "nazwisko", url: "nienull"}))}>testlogin</button>
         </div>
     )
 }
