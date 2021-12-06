@@ -20,18 +20,43 @@
   /* Standard */
 }
 
-.wavy-bg {
+.homepage {
+  background-color: #060022;
   height: 100vh;
   width: 100%;
   position: absolute;
-  background-image: url(/src/bgs/wave.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-  z-index: -100;
   left: 0;
   top: 0;
+  z-index: -1;
+}
+
+.homepage__text {
+  width: 40%;
+}
+
+.homepage__text--style {
+  color: white;
+  font-size: 40px;
+}
+
+.startBtn {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-size: 20px;
+  padding: 10px;
+  background: linear-gradient(45deg, #070032 0%, #3c2577 50%, #0c0041 100%);
+  width: 15rem;
+  margin: auto;
+}
+
+.startBtn__homepage--position {
+  margin-top: 50px;
+}
+
+.startBtn:hover {
+  cursor: pointer;
 }
 
 .full-width-gradient {
@@ -50,6 +75,7 @@
 
 .transparent-bg {
   height: 3rem;
+  background-color: transparent;
 }
 
 .transparent-bg a {
@@ -153,14 +179,55 @@
 
 .friendsList {
   overflow-y: auto;
-  height: calc(100vh - 65px - 22px - 0.4rem);
+  height: calc(100vh - 3rem - 3rem);
+  background-color: #5f5f5f;
+}
+
+.friendsList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.friendsList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.friendsList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.friendsList::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.friendsList::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .back {
   background-color: #5f5f5f;
   color: white;
   overflow-y: auto;
-  height: calc(100vh - 65px - 22px - 0.4rem);
+  height: calc(100vh - 3rem - 3rem);
+}
+
+.back::-webkit-scrollbar {
+  width: 5px;
+}
+
+.back::-webkit-scrollbar {
+  width: 5px;
+}
+
+.back::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.back::-webkit-scrollbar-thumb {
+  background: #9c9c9c;
+}
+
+.back::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .messages-every {
@@ -233,9 +300,10 @@
 }
 
 .msg-field--textarea {
+  height: 3rem;
   background-color: white;
   text-align: left;
-  padding: 0.2rem 1rem;
+  padding: 0rem 1rem;
   background-color: #9b9b9b;
   color: white;
   font-size: 26px;

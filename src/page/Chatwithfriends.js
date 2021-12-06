@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect, useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
+import Friendlist from '../components/Friendlist'
+import Msgboard from '../components/Msgboard'
 import { getAnything, getMessagesWithFriend, time } from '../firebase'
 
 export default function Chatwithfriends () {
@@ -13,7 +15,6 @@ export default function Chatwithfriends () {
   const [chatMessages, setChatMessages] = useState([])
   const [fireBaseMessages, setFireBaseMessages] = useState([])
   const [firebaseFriendList, setFirebaseFriendList] = useState([])
-  const [profileImage, setProfileImage] = useState(null)
   const msg1 = getMessagesWithFriend(userProps.uid, params.hisuid)
   const msg2 = getMessagesWithFriend(params.hisuid, userProps.uid)
   const [isLoading, setIsLoading] = useState(true)
@@ -29,6 +30,8 @@ export default function Chatwithfriends () {
 
 
 
+
+
   function updateFriends () {
     getAnything('users').onSnapshot(querySnapshot => {
       const items = []
@@ -41,11 +44,6 @@ export default function Chatwithfriends () {
   }
 
   useEffect(() => {
-    getAnything('users')
-      .doc(params.hisuid)
-      .onSnapshot(doc => {
-        setProfileImage(doc.data().url)
-      })
     updateMessages()
     updateFriends()
   }, [params.hisuid, userProps.uid])
@@ -89,79 +87,16 @@ export default function Chatwithfriends () {
     }
   }
 
-  if (isLoading === true) {
-    return <div>Ładowanie</div>
-  } else {
     if (userProps.uid === null) {
       return <div>Jesteś zalogowany?</div>
     } else {
       return (
+        <div className= "d-flex flex-column">
+        <div className="d-flex">
+            <Friendlist firebaseFriendList={firebaseFriendList} userProps={userProps} hisUid={params.hisuid} setIsLoading={setIsLoading} />
+            <Msgboard fireBaseMessages={fireBaseMessages} userProps={userProps} />
+        </div>
         <div>
-          <div className='container'>
-            <div className='row '>
-              <div className='col-1 p-0 friendsList'>
-                {firebaseFriendList.map((friends, index) => (
-                  <div>
-                    {friends.uid !== userProps.uid && (
-                      <div>
-                        {friends.uid === params.hisuid ? (
-                          <div key={index}>                            <div className='text-center pt-3' style={{cursor: "pointer"}}>
-                          <img
-                            className='friends-img'
-                            src={friends.url}
-                            alt=''
-                          />
-                        </div></div>
-                        ) : (
-                          <Link
-                            key={index}
-                            onClick={() => {
-                              setIsLoading(true)
-                            }}
-                            to={`/chat/${friends.uid}`}
-                          >
-                            <div className='text-center pt-3'>
-                              <img
-                                className='friends-img'
-                                src={friends.url}
-                                alt=''
-                              />
-                            </div>
-                          </Link>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className=' text-center col-11 p-0 back'>
-                {/*   {chatMessages.map((message, index)=> (<div className="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))} */}
-                {fireBaseMessages.map((msg, index) => (
-                  <div key={index}>
-                    {msg.uid === userProps.uid ? (
-                      <div className='messages-every messages-my' key={msg.id}>
-                        <p className='message-direct message-direct-my'>
-                          {msg.text}
-                        </p>
-                      </div>
-                    ) : (
-                      <div className='messages-every messages-his' key={msg.id}>
-                        <img
-                          className='message-direct-his-img'
-                          src={profileImage}
-                          alt='niemaimg'
-                        />
-                        <p className='message-direct message-direct-his'>
-                          {msg.text}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className='row '>
-              <div className='col-1'></div>
               <div className='p-0 d-flex col-11 '>
                 <input
                   type='text'
@@ -179,10 +114,8 @@ export default function Chatwithfriends () {
                   <i className='bi bi-shuffle'></i>
                 </a>
               </div>
-            </div>
-          </div>
+        </div>
         </div>
       )
     }
-  }
 }

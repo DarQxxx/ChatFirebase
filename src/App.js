@@ -17,28 +17,48 @@ export default function App() {
   const isLogged = useSelector(state => state.isLogged)
   const isSigningUp = useSelector(state => state.signUp)
 
-  useEffect(() => {
+
+
+
+  function authChange(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
         localStorage.setItem('authUser', JSON.stringify(user))
       getAnything('users')
         .doc(user.uid).onSnapshot(doc => {
-          dispatch(dataAction({name: doc.data().name, surname: doc.data().surname, uid: doc.data().uid, profilePic: doc.data().url}));
-          dispatch(loginAction())
+
+          /*if(typeof doc.data().name !== "undefined" && typeof  doc.data().surname !== "undefined" && typeof doc.data().uid !== "undefined" && typeof  doc.data().url !== "undefined"){
+            dispatch(dataAction({name: doc.data().name, surname: doc.data().surname, uid: doc.data().uid, profilePic: doc.data().url}));
+            dispatch(loginAction())
+          }
+        else{
+            setTimeout(waitForElement, 250);
+        }*/
+        if (typeof doc.data() !== "undefined"){
+          if (typeof doc.data().name !== "undefined" && typeof doc.data().surname !== "undefined" && typeof doc.data().uid !== "undefined" && typeof doc.data().url !== "undefined" ){
+        dispatch(dataAction({name: doc.data().name, surname: doc.data().surname, uid: doc.data().uid, profilePic: doc.data().url}));
+        dispatch(loginAction())
+          }
+        }
+
 
           
         })
-        console.log("uzyl sie if")
         
       }
       else {
         dispatch(dataAction({name: null, surname: null, uid: null, profilePic: null}));
         dispatch(logoutAction());
         localStorage.removeItem('authUser')
-        console.log("uzyl sie else")
 
       }
     })
+  }
+
+  
+
+  useEffect(() => {
+    authChange();
   }, [])    
 
 

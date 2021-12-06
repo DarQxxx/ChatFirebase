@@ -27,8 +27,8 @@ export default function LogIn() {
         
     }
     useEffect(() => {
-            if (userProps.uid !== null) history.push(`/chat/${userProps.uid}`);
-    }, [userProps])
+            if (userProps.uid !== null && isLogged === true) history.push(`/chat/${userProps.uid}`);
+    }, [userProps, isLogged])
 
     
 

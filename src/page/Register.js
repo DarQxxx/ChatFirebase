@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 
 import {register} from '../firebase'
@@ -8,6 +8,8 @@ import {register} from '../firebase'
 export default function Register() {
     const [isMatching, setIsMatching] = useState(null)
     const [errorStatus, setErrorStatus] = useState(false)
+    const isLogged = useSelector(state => state.isLogged)
+    const userProps = useSelector(state => state.userData)
     const [userData, setUserData] = useState({
         name: "",
         surname: "",
@@ -26,10 +28,8 @@ export default function Register() {
     }, [])
 
     useEffect(() => {
-        if (errorStatus === null) history.push(`/chat/${JSON.parse(localStorage.getItem('authUser')).uid}`);
-        
-
-}, [errorStatus])
+        if (userProps.uid !== null && isLogged === true) history.push(`/chat/${userProps.uid}`);
+}, [userProps, isLogged])
 
     const handleChange = (e) => {
         setUserData({...userData, [e.target.id]: e.target.value})

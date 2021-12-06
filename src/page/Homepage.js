@@ -1,31 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import img1 from "../imgs/Group1.png"
-
+import {  useHistory } from 'react-router-dom'
 export default function Homepage() {
+
+    const history = useHistory();
+    function handleClick(){
+        history.push(`/login`)
+        
+    }
     return (
-        <div>
-            <div className="wavy-bg">
-            </div>
-            
-                <div className="container">
-            <div className="d-flex justify-content-between">
+        <div className="homepage d-flex flex-column text-center justify-content-center">
+            <div className="homepage__text homepage__text--style m-auto">
+                Chat with friends 
+                and  meet new people around the world
 
-                    <row>
-                        <div >
-                        Chat with friends 
-                        Also talk and meet new people around the world
-                        Get started there    
-                        </div>
-                    </row>
+                <div className="startBtn startBtn__homepage--position" onClick={handleClick}>  Get started there </div>  
 
-                    <row>
-                        <div className="col-3">
-                            <img src={img1}></img>   
-                        </div>
-                    </row>
-                </div>
+                
             </div>
+
         </div>
     )
 }

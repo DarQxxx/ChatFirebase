@@ -29,21 +29,43 @@ $blue: #007497;
 user-select: none; /* Standard */
 }
 //home
-
-.wavy-bg{
+.homepage{
+  background-color: #060022;
   height: 100vh;
   width: 100%;
   position: absolute;
-  background-image: url(/src/bgs/wave.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  transform: rotate(180deg);
-  z-index: -100;
   left: 0;
   top: 0;
+  z-index: -1;
 
+  &__text{
+    width: 40%;
 
+  }
+
+  &__text--style{
+    color: white;
+    font-size: 40px;
+  }
 }
+
+.startBtn{
+  user-select:none;
+  font-size: 20px;
+  padding: 10px;
+  background: linear-gradient(45deg, rgba(7,0,50,1) 0%, rgba(60,37,119,1) 50%, rgba(12,0,65,1) 100%);
+  width: 15rem;
+  margin:auto;
+  &__homepage--position{
+  margin-top: 50px;
+
+  }
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+
 
 //header
 
@@ -64,6 +86,8 @@ user-select: none; /* Standard */
 
 .transparent-bg{
   height: 3rem;
+  background-color: transparent;
+
   a{
     text-decoration: none;
      color: white;
@@ -159,14 +183,46 @@ user-select: none; /* Standard */
 
 .friendsList{
   overflow-y: auto;
-  height: calc(100vh - 65px - 22px - 0.4rem);
+  height: calc(100vh - 3rem - 3rem);
+  background-color: $sentMessagesAreaColor;
+
+  &::-webkit-scrollbar {
+  width: 5px;
+}
+&::-webkit-scrollbar {
+  width: 5px;
+}
+&::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+&::-webkit-scrollbar-thumb {
+  background: #888;
+}
+&::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 }
 
 .back{
     background-color: $sentMessagesAreaColor;
     color: $white;
     overflow-y: auto;
-    height: calc(100vh - 65px - 22px - 0.4rem);
+    height: calc(100vh - 3rem - 3rem);
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgb(156, 156, 156);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
   }
   .messages-every{
     word-wrap: break-word;
@@ -227,9 +283,10 @@ user-select: none; /* Standard */
       justify-content: center;
   }
   .msg-field--textarea{
+    height: 3rem;
     background-color: $white;
     text-align: left;
-    padding: 0.2rem 1rem;
+    padding: 0rem 1rem;
     background-color: rgb(155, 155, 155);
     color: $white;
     font-size: 26px;
