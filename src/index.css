@@ -178,13 +178,60 @@
 }
 
 .friendsList {
+  padding-top: 10px;
+  min-width: 260px;
+  width: 260px;
   overflow-y: auto;
-  height: calc(100vh - 3rem - 3rem);
-  background-color: #5f5f5f;
+  height: calc(100vh - 3rem);
+  background-color: #3a3a3d;
 }
 
-.friendsList::-webkit-scrollbar {
-  width: 5px;
+@media (max-width: 992px) {
+  .friendsList {
+    min-width: 150px;
+    width: 150px;
+  }
+  .friendsList__friend__name {
+    display: none;
+    background-color: red;
+  }
+  .friendsList__friend--position {
+    text-align: center;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    margin: 0;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.friendsList__friend {
+  border-radius: 25px;
+}
+
+.friendsList__friend:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.friendsList__friend__name--margin {
+  margin-left: 20px;
+}
+
+.friendsList__friend--position {
+  text-align: center;
+  padding: 0.3rem 1rem 0.3rem 1rem;
+  margin: 0.8rem 0px 0.8rem 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+.friendsList a {
+  text-decoration: none;
 }
 
 .friendsList::-webkit-scrollbar {
@@ -204,7 +251,7 @@
 }
 
 .back {
-  background-color: #5f5f5f;
+  background-color: #3a3a3d;
   color: white;
   overflow-y: auto;
   height: calc(100vh - 3rem - 3rem);
@@ -259,7 +306,7 @@
 }
 
 .messages-my .message-direct-my {
-  background-color: #007497;
+  background-color: #005397;
 }
 
 .messages-his {
@@ -278,7 +325,7 @@
 }
 
 .messages-his .message-direct-his {
-  background-color: #b9b9b9;
+  background-color: #6e6e6e;
 }
 
 .friends-img {
