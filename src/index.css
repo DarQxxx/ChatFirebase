@@ -1,5 +1,13 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800;900&display=swap");
+.paddingl-5 {
+  padding-left: 3rem;
+}
+
+.paddingr-5 {
+  padding-right: 3rem;
+}
+
 .color-white {
   color: white;
 }
@@ -177,6 +185,25 @@
   cursor: pointer;
 }
 
+.chatHead {
+  background-color: #3a3a3d;
+  height: 5rem;
+  border-bottom: 1px solid rgba(39, 39, 39, 0.4);
+}
+
+.chatHead__leftSide--text {
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.chatHead__leftSide img {
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  margin-right: 10px;
+}
+
 .friendsList {
   padding-top: 10px;
   min-width: 260px;
@@ -188,8 +215,8 @@
 
 @media (max-width: 992px) {
   .friendsList {
-    min-width: 150px;
-    width: 150px;
+    min-width: 110px;
+    width: 110px;
   }
   .friendsList__friend__name {
     display: none;
@@ -209,12 +236,20 @@
   border-radius: 25px;
 }
 
-.friendsList__friend:hover {
+.friendsList__friend--active {
+  background-color: rgba(91, 167, 255, 0.3);
+}
+
+.friendsList__friend--nonactive:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-.friendsList__friend__name--margin {
+.friendsList__friend__name--style {
   margin-left: 20px;
+  font-weight: 600;
+  font-size: 18px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .friendsList__friend--position {
@@ -228,6 +263,12 @@
       -ms-flex-align: center;
           align-items: center;
   color: white;
+}
+
+@media (max-width: 992px) {
+  .friendsList__friend--position {
+    padding: 0.3rem;
+  }
 }
 
 .friendsList a {
@@ -251,10 +292,11 @@
 }
 
 .back {
+  padding-top: 20px;
   background-color: #3a3a3d;
   color: white;
   overflow-y: auto;
-  height: calc(100vh - 3rem - 3rem);
+  height: calc(100vh - 3rem - 3rem - 5rem);
 }
 
 .back::-webkit-scrollbar {
@@ -288,6 +330,7 @@
   max-width: 40%;
   border-radius: 25px;
   margin: 0;
+  text-align: left;
 }
 
 .messages-my {
@@ -314,14 +357,15 @@
 }
 
 .messages-his .message-direct-his-img {
-  width: 50px;
-  height: 50px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%;
   margin-right: 14px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  vertical-align: bottom;
 }
 
 .messages-his .message-direct-his {
@@ -333,9 +377,13 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+}
+
+.msgField {
+  background-color: #3a3a3d;
 }
 
 .msg-field {
@@ -346,6 +394,11 @@
           justify-content: center;
 }
 
+.msg-field__sendBtn--radius {
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
 .msg-field--textarea {
   height: 3rem;
   background-color: white;
@@ -354,6 +407,8 @@
   background-color: #9b9b9b;
   color: white;
   font-size: 26px;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
 }
 
 .bi-shuffle {

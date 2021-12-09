@@ -13,6 +13,13 @@ $blue: #005397;
 $breakPointSmall : 576px;
 $breakPointMedium : 768px;
 $breakPointLarge : 992px;
+.paddingl-5{
+  padding-left: 3rem
+}
+
+.paddingr-5{
+  padding-right: 3rem
+}
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800;900&display=swap');
@@ -184,6 +191,24 @@ user-select: none; /* Standard */
 
 
 //chat]
+.chatHead{
+  &__leftSide--text{
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  &__leftSide{
+    img{
+      width: 40px;
+      height: 40px;
+      border-radius: 25px;
+      margin-right: 10px;
+    }
+  }
+  background-color: $sentMessagesAreaColor;
+  height: 5rem;
+  border-bottom: 1px solid rgba(39, 39, 39, 0.4);
+}
 
 
 
@@ -191,8 +216,8 @@ user-select: none; /* Standard */
 
 
   @media (max-width: $breakPointLarge){
-    min-width: 150px;
-    width: 150px;
+    min-width: 110px;
+    width: 110px;
     &__friend{
   
       &__name{
@@ -216,28 +241,45 @@ user-select: none; /* Standard */
   min-width: 260px;
   width: 260px;
   overflow-y: auto;
-  height: calc(100vh - 3rem );
+  height: calc(100vh - 3rem  );
   background-color: $sentMessagesAreaColor;
 
   &__friend{
     border-radius: 25px;
-    &:hover{
-      background-color: rgba(255, 255, 255, 0.3);
-      
-
+    &--active {
+      background-color: rgba(91, 167, 255, 0.3);
+    }
+    &--nonactive{
+      &:hover{
+        background-color: rgba(255, 255, 255, 0.3);
+        
+  
+      }
     }
 
-    &__name--margin{
+
+    &__name--style{
       margin-left: 20px;
+      font-weight: 600;
+      font-size: 18px;
+      text-overflow: ellipsis;
+  overflow: hidden; 
     }
 
     &--position{
+
+      @media (max-width: $breakPointLarge){
+        padding: 0.3rem;
+      }
+
       text-align: center; 
       padding: 0.3rem 1rem 0.3rem 1rem;
       margin: 0.8rem 0px 0.8rem 20px;
       display: flex;
       align-items: center;
       color: white;
+
+
   
     }
 
@@ -273,10 +315,11 @@ user-select: none; /* Standard */
 }
 
 .back{
+    padding-top: 20px;
     background-color: $sentMessagesAreaColor;
     color: $white;
     overflow-y: auto;
-    height: calc(100vh - 3rem - 3rem);
+    height: calc(100vh - 3rem - 3rem - 5rem);
     &::-webkit-scrollbar {
       width: 5px;
     }
@@ -302,6 +345,7 @@ user-select: none; /* Standard */
       max-width: 40%;
       border-radius: 25px;
       margin: 0;
+      text-align: left;
     }
 
   }
@@ -325,11 +369,12 @@ user-select: none; /* Standard */
     text-align: left;
 
     .message-direct-his-img{
-      width: 50px;
-      height: 50px;
+      width: 33px;
+      height: 33px;
       border-radius:50%;
       margin-right: 14px;
       user-select: none;
+      vertical-align: bottom;
       }
     .message-direct-his{
       background-color: $hisMessages;
@@ -340,16 +385,23 @@ user-select: none; /* Standard */
 
   .friends-img{
     user-select: none;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius:50%;
   }
 
 
+  .msgField{
+    background-color: $sentMessagesAreaColor;
+  }
   .msg-field{
       background-color: $typedMessagesAreaColor;
       padding: 1.05rem 0;
       justify-content: center;
+  }
+  .msg-field__sendBtn--radius{
+    border-bottom-right-radius: 25px;
+border-top-right-radius: 25px;
   }
   .msg-field--textarea{
     height: 3rem;
@@ -359,6 +411,9 @@ user-select: none; /* Standard */
     background-color: rgb(155, 155, 155);
     color: $white;
     font-size: 26px;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+
   }
 
   .bi-shuffle{

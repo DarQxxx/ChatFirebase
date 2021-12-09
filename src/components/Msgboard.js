@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAnything } from '../firebase'
+import Chatheader from './Chatheader'
 import Sendmsg from './Sendmsg'
 
 export default function Msgboard(props) {
@@ -16,7 +17,8 @@ export default function Msgboard(props) {
 
     return (
         <div className="w-100 ">
-        <div className=' text-center  p-0 back'>
+        <Chatheader friendImg={FriendImg}/>
+        <div className=' text-center   back'>
         {/*   {chatMessages.map((message, index)=> (<div className="messages-every messages-my" key={index}><div className="message-direct message-direct-my">{message}</div></div>))} */}
         {props.fireBaseMessages.map((msg, index) => (
           <div key={index}>

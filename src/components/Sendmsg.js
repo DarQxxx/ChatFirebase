@@ -51,7 +51,7 @@ export default function Sendmsg(props) {
       }
 
     return (
-        <div className='p-0 d-flex  '  >
+        <div className='p-0 d-flex  msgField'  >
         <input
           type='text'
           className='msg-field--textarea  msg-field--textarea-clear w-100 '
@@ -62,8 +62,9 @@ export default function Sendmsg(props) {
         ></input>
         <a
           href='#'
-          className=' border-left bg-info px-3 '
+          className=' border-left bg-info px-3 msg-field__sendBtn--radius'
           onClick={sendMessage}
+          
         >
           <i className='bi bi-shuffle'></i>
         </a>

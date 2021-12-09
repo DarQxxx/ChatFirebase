@@ -12,7 +12,7 @@ export default function Friendlist(props) {
                   <div key={index}>
                     {' '}
                     <div
-                      className=' friendsList__friend--position friendsList__friend'
+                      className=' friendsList__friend--position friendsList__friend friendsList__friend--active'
                       style={{ cursor: 'pointer' }}
                     >
                       <img
@@ -20,7 +20,7 @@ export default function Friendlist(props) {
                         src={friends.url}
                         alt=''
                       />
-                      <div className="friendsList__friend__name friendsList__friend__name--margin">{friends.name} {friends.surname}</div>
+                      <div className="friendsList__friend__name friendsList__friend__name--style">{friends.name} {friends.surname}</div>
                     </div>
                   </div>
                 ) : (
@@ -29,13 +29,13 @@ export default function Friendlist(props) {
 
                     to={`/chat/${friends.uid}`}
                   >
-                    <div className=' friendsList__friend--position friendsList__friend '>
+                    <div className=' friendsList__friend--position friendsList__friend friendsList__friend--nonactive'>
                       <img
                         className='friends-img'
                         src={friends.url}
                         alt=''
                       />
-                      <div className="friendsList__friend__name friendsList__friend__name--margin" >{friends.name} {friends.surname}</div>
+                      <div className="friendsList__friend__name friendsList__friend__name--style" >{friends.name} {friends.surname}</div>
                     </div>
                   </Link>
                 )}
