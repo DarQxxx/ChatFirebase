@@ -188,7 +188,7 @@
 .chatHead {
   background-color: #3a3a3d;
   height: 5rem;
-  border-bottom: 1px solid rgba(39, 39, 39, 0.4);
+  border-bottom: 2px solid rgba(39, 39, 39, 0.4);
 }
 
 .chatHead__leftSide--text {
@@ -204,10 +204,19 @@
   margin-right: 10px;
 }
 
+.chatHead__rightSide {
+  color: white;
+  font-size: 20px;
+}
+
 .friendsList {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   padding-top: 10px;
-  min-width: 260px;
-  width: 260px;
+  min-width: 360px;
+  width: 360px;
   overflow-y: auto;
   height: calc(100vh - 3rem);
   background-color: #3a3a3d;
@@ -248,8 +257,9 @@
   margin-left: 20px;
   font-weight: 600;
   font-size: 18px;
-  text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .friendsList__friend--position {
@@ -592,5 +602,10 @@
 
 input {
   outline: none;
+}
+
+.settings {
+  height: calc(100vh - 3rem);
+  background-color: #3a3a3d;
 }
 /*# sourceMappingURL=index.css.map */

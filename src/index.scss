@@ -207,13 +207,20 @@ user-select: none; /* Standard */
   }
   background-color: $sentMessagesAreaColor;
   height: 5rem;
-  border-bottom: 1px solid rgba(39, 39, 39, 0.4);
+  border-bottom: 2px solid rgba(39, 39, 39, 0.4);
+
+  &__rightSide{
+    color: white;
+    font-size: 20px;
+  }
+
+
 }
 
 
 
 .friendsList{
-
+  user-select: none;
 
   @media (max-width: $breakPointLarge){
     min-width: 110px;
@@ -238,8 +245,8 @@ user-select: none; /* Standard */
   }
 
   padding-top: 10px;
-  min-width: 260px;
-  width: 260px;
+  min-width: 360px;
+  width: 360px;
   overflow-y: auto;
   height: calc(100vh - 3rem  );
   background-color: $sentMessagesAreaColor;
@@ -262,8 +269,10 @@ user-select: none; /* Standard */
       margin-left: 20px;
       font-weight: 600;
       font-size: 18px;
+      white-space: nowrap;
+      overflow: hidden;
       text-overflow: ellipsis;
-  overflow: hidden; 
+
     }
 
     &--position{
@@ -582,4 +591,11 @@ border-top-right-radius: 25px;
 input{
   outline: none;
 
+}
+
+//settings
+
+.settings{
+  height: calc(100vh - 3rem);
+  background-color: $sentMessagesAreaColor;
 }

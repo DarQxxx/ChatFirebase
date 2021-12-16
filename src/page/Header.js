@@ -1,24 +1,20 @@
-import React, { useContext, useRef } from 'react'
-import { getAnything, logout } from '../firebase'
+import React, { useRef } from 'react'
+import { logout } from '../firebase'
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
 import { useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import Navbar from '../components/Navbar'
 
 export default function Header (props) {
-    const [name, setName] = useState(null)
-
   const isLogged = useSelector(state => state.isLogged)
 
   const [isMenu, setIsMenu] = useState(false)
   const userProps = useSelector(state => state.userData)
   const clickMenu = useRef()
-
-
+  //Włączanie i wyłączanie menu 
   function handleMenuClick () {
-    setIsMenu(!isMenu);
+    setIsMenu(!isMenu)
   }
 
   return (
@@ -55,12 +51,21 @@ export default function Header (props) {
                         {`${userProps.name} ${userProps.surname}`}
                       </div>
                     </div>
-                    <div className='options d-flex' onClick={handleMenuClick} ref={clickMenu}>
-                      <FaChevronDown  />
+                    <div
+                      className='options d-flex'
+                      onClick={handleMenuClick}
+                      ref={clickMenu}
+                    >
+                      <FaChevronDown />
                     </div>
                   </div>
-                  {isMenu&& (<Navbar setIsMenu={setIsMenu} clickMenu={clickMenu}></Navbar>) }
-
+                  {isMenu && (
+                    <Navbar
+                      setIsMenu={setIsMenu}
+                      clickMenu={clickMenu}
+                      userProps={userProps}
+                    ></Navbar>
+                  )}
                 </div>
               ) : (
                 <Link to='/login'> Zaloguj</Link>

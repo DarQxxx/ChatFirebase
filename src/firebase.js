@@ -1,15 +1,7 @@
-import { initializeApp } from 'firebase/app'
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 import firebase from 'firebase/compat'
-import { getStorage } from 'firebase/storage'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { Redirect, useHistory } from 'react-router'
 
+//Tworzenie configu dla firebase
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -19,13 +11,20 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 }
-
-
+//inicjalizacja firebase
 const app = firebase.initializeApp(firebaseConfig)
 export const storage = firebase.storage()
 export const db = app.firestore()
 export const auth = getAuth(app)
-export const register = (email, password, img, name, surname, setErrorStatus) => {
+//Rejestrowanie użytkownika z defaultowym avatarem jeśli nie doda żadnego / jego jeśli doda podczas rejestracji
+export const register = (
+  email,
+  password,
+  img,
+  name,
+  surname,
+  setErrorStatus
+) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -64,25 +63,24 @@ export const register = (email, password, img, name, surname, setErrorStatus) =>
           )
       } else {
         storage
-        .ref(`placeholder`)
-        .child("avatar.png")
-        .getDownloadURL()
-        .then(url => {
-          firebase
-            .firestore()
-            .collection('users')
-            .doc(userek.uid)
-            .set({
-              email: userek.email,
-              uid: userek.uid,
-              url: url,
-              name: name,
-              surname: surname
-            })
-        })
-      
+          .ref(`placeholder`)
+          .child('avatar.png')
+          .getDownloadURL()
+          .then(url => {
+            firebase
+              .firestore()
+              .collection('users')
+              .doc(userek.uid)
+              .set({
+                email: userek.email,
+                uid: userek.uid,
+                url: url,
+                name: name,
+                surname: surname
+              })
+          })
       }
-      setErrorStatus(null);
+      setErrorStatus(null)
     })
     .catch(error => {
       const errorCode = error.code
@@ -92,6 +90,8 @@ export const register = (email, password, img, name, surname, setErrorStatus) =>
       setErrorStatus(errorCode)
     })
 }
+
+//Logowanie użytkownika
 
 export const login = (email, password, setErrorStatus) => {
   firebase
@@ -109,6 +109,8 @@ export const login = (email, password, setErrorStatus) => {
       setErrorStatus(errorCode)
     })
 }
+
+//wylogowanie użytkownika
 export const logout = () => {
   firebase
     .auth()
@@ -120,20 +122,25 @@ export const logout = () => {
       console.log(err)
     })
 }
-
+//Wchodzenie do bazy danych do kolekcji "messages"
 export const getMessages = () => {
   return firebase.firestore().collection('messages')
 }
+
+//Wchodzenie do bazy danych do kolekcji w której są wiadomości dwóch odpowiednich użytkowników
 export const getMessagesWithFriend = (myUid, friendUid) => {
   return firebase.firestore().collection(`${myUid}${friendUid}_messages`)
 }
+
+//Wchodzenie do bazy danych do kolekcji "users"
 export const getUsers = () => {
   return firebase.firestore().collection('users')
 }
+//Wchodzenie do wybranej przez deva kolekcji jako argument col
 export const getAnything = col => {
   return firebase.firestore().collection(col)
 }
+//Tworzenie timestampu, którym sygnujemy wiadomości
 export const time = () => {
   return firebase.firestore.FieldValue.serverTimestamp()
 }
-
