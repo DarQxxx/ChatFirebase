@@ -7,24 +7,24 @@ Projekt stworzyłem w celu przećwiczenia i przetestowania Firebase oraz Redux'a
 
 Żeby aplikacja działała trzeba zainstalować node'a poprzez
 
-### 'npm install"
+### npm install
 
 Stworzyć projekt firebase z bazą firestore oraz autoryzacją użytkownika poprzez e-mail i hasło
 
 Stworzyć plik ".env.local" zawierający dane z bazy danych firebase wg. szablonu
 
 
-### `REACT_APP_FIREBASE_API_KEY="xxx"'
-### `REACT_APP_FIREBASE_AUTH_DOMAIN="xxx"'
-### `REACT_APP_FIREBASE_DATABSE_URL="xxx"'
-### `REACT_APP_FIREBASE_PROJECT_ID="xxx"'
-### `REACT_APP_FIREBASE_STORAGE_BUCKET="xxx"'
-### `REACT_APP_FIREBASE_MESSAGING_SENDER_ID="xxx"'
-### `REACT_APP_FIREBASE_APP_ID="xxx"'
+### REACT_APP_FIREBASE_API_KEY="xxx"
+### REACT_APP_FIREBASE_AUTH_DOMAIN="xxx"
+### REACT_APP_FIREBASE_DATABSE_URL="xxx"
+### REACT_APP_FIREBASE_PROJECT_ID="xxx"
+### REACT_APP_FIREBASE_STORAGE_BUCKET="xxx"
+### REACT_APP_FIREBASE_MESSAGING_SENDER_ID="xxx"
+### REACT_APP_FIREBASE_APP_ID="xxx"
 
 Wystartować aplikację poprzez 
 
-### `npm start'
+### npm start
 
 # TBC
 
